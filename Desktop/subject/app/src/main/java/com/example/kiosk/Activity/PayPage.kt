@@ -7,19 +7,21 @@ import com.example.kiosk.Fragment.PayPageBody
 import com.example.kiosk.R
 
 class PayPage : AppCompatActivity() {
-    var basket = mutableListOf<ArrayList<String>>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.backbtn_fragment)
-        supportFragmentManager.beginTransaction().replace(R.id.mainlayout, PayPageBody()).commit()
 
+        var fragment = PayPageBody()
+        var bundle = Bundle()
         var basketCount = intent.getStringExtra("count")
-        Log.d("tag",basketCount!!)
-        for (index in 0 until basketCount.toInt()){
+        for (index in 0 until basketCount!!.toInt()){
             var getMenu = intent.getStringArrayListExtra("menu"+"$index")
-            basket.add(getMenu!!)
+            bundle.putStringArrayList("menu"+"$index",getMenu!!)
         }
-        Log.d("tag","$basket")
+        bundle.putString("count",basketCount)
+        fragment.arguments = bundle
+        supportFragmentManager.beginTransaction().replace(R.id.mainlayout, fragment).commit()
+
     }
 }
 

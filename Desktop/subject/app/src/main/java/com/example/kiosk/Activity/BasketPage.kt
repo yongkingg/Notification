@@ -7,6 +7,7 @@ import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kiosk.DeleteMenu
@@ -21,6 +22,9 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.backbtn_fragment)
+
+        var basketBtn:Button? = findViewById<Button>(R.id.basketBtn)
+        basketBtn!!.visibility = View.INVISIBLE
 
         var fragment = BasketPageBody()
         var bundle = Bundle()
@@ -51,7 +55,6 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
                 var intent = Intent(this,BeverageOrderPage::class.java)
                 for (index in 0 until getMenu.count()) {
                     getMenu.remove(ArrayList(0))
-                    Log.d("list", "$getMenu")
                 }
                 if (getMenu.count() == 0){
                     setResult(Activity.RESULT_FIRST_USER)

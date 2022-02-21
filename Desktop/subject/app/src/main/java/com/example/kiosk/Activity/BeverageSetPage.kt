@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,9 @@ class BeverageSetPage : AppCompatActivity(), BeverageValue {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.backbtn_fragment)
+
+
+
         var headText = findViewById<TextView>(R.id.textView)
         headText.setText("음료 주문")
         var fragment = BeverageSetPageBody()
@@ -33,10 +37,7 @@ class BeverageSetPage : AppCompatActivity(), BeverageValue {
             finish()
             }
         var basketBtn:Button? = findViewById<Button>(R.id.basketBtn)
-        basketBtn!!.setOnClickListener{
-            var intent = Intent(this, BasketPage::class.java)
-            startActivity(intent)
-        }
+        basketBtn!!.visibility = View.INVISIBLE
     }
     override fun sendValue(name: String, Image:Int,cost:Int,count: Int,temp: String,size: String,receive: String,topping: ArrayList<Int>) {
         var intent = Intent(this, BeverageOrderPage::class.java)
