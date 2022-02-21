@@ -1,6 +1,7 @@
 package com.example.kiosk.Fragment
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import com.example.kiosk.R
 import org.w3c.dom.Text
@@ -47,8 +49,11 @@ class PayPageBody: Fragment() {
 
         var blankParams = LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.MATCH_PARENT, 1f)
 
+        var lineParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 4)
+        lineParams.setMargins(10,30,10,0)
+
         var headTextParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.MATCH_PARENT)
-        headTextParams.setMargins(10,30,10,0)
+        headTextParams.setMargins(10,20,10,0)
 
         var headText = TextView(context)
         headText.setText("주문메뉴/혜택")
@@ -92,14 +97,45 @@ class PayPageBody: Fragment() {
             var costText = TextView(context)
             costText.layoutParams = textParams
             costText.setTypeface(resources.getFont(R.font.body))
-            costText.setText(basketMenu[index][2] + "원")
+            costText.setText((basketMenu[index][2].toInt()/basketMenu[index][3].toInt()).toString() + " X " + basketMenu[index][3])
             costText.gravity = Gravity.END
             costText.textSize = 15f
             basicOptionLayout.addView(costText)
-//
-//            var toppingLayout = LinearLayout(context)
-//            toppingLayout.layoutParams = basicOptionLayoutParams
-//            toppingLayout.orientation = LinearLayout.HORIZONTAL
+
+            var toppingLayout = LinearLayout(context)
+            toppingLayout.layoutParams = basicOptionLayoutParams
+            toppingLayout.orientation = LinearLayout.HORIZONTAL
+            mainLayout.addView(toppingLayout)
+
+            var topping = TextView(context)
+            topping.layoutParams = optionParams
+            topping.setText("커스텀 선택 안함")
+            topping.textSize = 15f
+            topping.setTypeface(resources.getFont(R.font.body))
+            toppingLayout.addView(topping)
+
+            var toppingCost = TextView(context)
+            toppingCost.layoutParams = textParams
+            toppingCost.setTypeface(resources.getFont(R.font.body))
+            toppingCost.setText( "원")
+            toppingCost.gravity = Gravity.END
+            toppingCost.textSize = 15f
+            toppingLayout.addView(toppingCost)
+
+            var totalCost = TextView(context)
+            totalCost.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+            totalCost.gravity = Gravity.END
+            totalCost.setText(basketMenu[index][2])
+            totalCost.textSize = 20f
+            totalCost.setTextColor(Color.BLACK)
+            totalCost.setTypeface(resources.getFont(R.font.body))
+            mainLayout.addView(totalCost)
+
+
+            var line = View(context)
+            line.layoutParams = lineParams
+            line.setBackgroundColor(Color.BLACK)
+            mainLayout.addView(line)
         }
 
     }
@@ -110,8 +146,8 @@ class PayPageBody: Fragment() {
                 R.id.mainlayout,
                 EndPageBody()
             ).commit()
-
         }
+
     }
 }
 
