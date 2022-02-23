@@ -35,8 +35,22 @@ class PayPage : AppCompatActivity(), changeFragment {
         initEvent()
     }
 
-    override fun signal() {
-        supportFragmentManager.beginTransaction().replace(R.id.mainlayout, EndPageBody()).commit()
+    override fun signal(cost:Int,payment:String,receipt:Boolean, takeType: String) {
+        var fragment = EndPageBody()
+        var bundle = Bundle()
+        bundle.putInt("cost",cost)
+        bundle.putString("payment",payment)
+        bundle.putString("takeType",takeType)
+        if (receipt == true) {
+            bundle.putString("receipt","출력")
+        } else {
+            bundle.putString("receipt","미출력")
+        }
+        Log.d("tag","$cost")
+        Log.d("tag","$payment")
+        Log.d("tag","$receipt")
+        fragment.arguments = bundle
+        supportFragmentManager.beginTransaction().replace(R.id.mainlayout, fragment).commit()
     }
     fun initEvent(){
         var backBtn : Button? = findViewById<Button>(R.id.backBtn)

@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.marginTop
@@ -37,11 +38,8 @@ class PayPageBody: Fragment() {
             var getMenu = arguments?.getStringArrayList("menu" + "$index")
             basketMenu.add(getMenu!!)
         }
-        Log.d("tag",getBasketCount)
-        Log.d("tag","$basketMenu")
-
         showBasket(view,getBasketCount,basketMenu)
-        initEvent(view)
+        initEvent(view,basketMenu[0][6])
 
 
         return view
@@ -151,16 +149,16 @@ class PayPageBody: Fragment() {
                 toppingCost.setText("0")
             } else {
                 if (basketMenu[index][7].toInt() != 0) {
-                    topping += basketMenu[index][7].toInt() * 500
+                    topping += basketMenu[index][7].toInt() * 500 * basketMenu[index][3].toInt()
                 }
                 if (basketMenu[index][8].toInt() != 0) {
-                    topping += basketMenu[index][8].toInt() * 500
+                    topping += basketMenu[index][8].toInt() * 500 * basketMenu[index][3].toInt()
                 }
                 if (basketMenu[index][9].toInt() != 0) {
-                    topping += basketMenu[index][9].toInt() * 500
+                    topping += basketMenu[index][9].toInt() * 500 * basketMenu[index][3].toInt()
                 }
                 if (basketMenu[index][10].toInt() != 0) {
-                    topping += basketMenu[index][10].toInt() * 500
+                    topping += basketMenu[index][10].toInt() * 500 * basketMenu[index][3].toInt()
                 }
                 toppingCost.setText("${topping}")
             }
@@ -200,8 +198,10 @@ class PayPageBody: Fragment() {
         var totalCostTextView = view.findViewById<TextView>(R.id.totalCostTextView)
         totalCostTextView.setText(allMenuCost.toString() + "원")
     }
-    fun initEvent(view: View){
+    fun initEvent(view: View,takeType : String){
         var payment : String? = null
+        var isReceipt : Boolean = false
+        var isPay : Boolean = false
 
         var paymentView = view.findViewById<TextView>(R.id.payment)
 
@@ -230,9 +230,21 @@ class PayPageBody: Fragment() {
             kakaoPay!!.setBackgroundResource(R.drawable.mainbtn)
             creditCard!!.setBackgroundResource(R.drawable.accountbtn)
         }
+
+
+        var receiptBox : CheckBox = view.findViewById<CheckBox>(R.id.receiptBox)
+        receiptBox.setOnClickListener{
+            isReceipt = isReceipt == false
+        }
+
+        var payBox : CheckBox = view.findViewById<CheckBox>(R.id.payBox)
+        payBox.setOnClickListener{
+            isPay = isPay == false
+        }
+
         var payBtn: Button? = view.findViewById<Button>(R.id.payBtn)
         payBtn!!.setOnClickListener{
-            signal.signal()
+            signal.signal(allMenuCost!!,payment!!,isReceipt, takeType)
         }
     }
 }

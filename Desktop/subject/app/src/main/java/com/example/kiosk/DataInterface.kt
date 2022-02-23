@@ -13,5 +13,5 @@ interface DeleteMenu {
 }
 
 interface changeFragment {
-    fun signal()
+    fun signal(cost : Int, payment : String, receipt : Boolean, takeType : String)
 }

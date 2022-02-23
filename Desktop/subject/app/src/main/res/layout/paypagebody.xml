@@ -61,11 +61,11 @@
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/receiptBox2"
+                        app:layout_constraintEnd_toStartOf="@+id/receiptBox"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <CheckBox
-                        android:id="@+id/receiptBox2"
+                        android:id="@+id/receiptBox"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -157,6 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
                         android:fontFamily="@font/body"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -195,6 +196,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <CheckBox
+                        android:id="@+id/payBox"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"

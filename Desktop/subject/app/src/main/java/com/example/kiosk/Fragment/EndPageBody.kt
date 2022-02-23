@@ -2,27 +2,39 @@ package com.example.kiosk.Fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.kiosk.Activity.UserPage
 import com.example.kiosk.R
+import org.w3c.dom.Text
 
 class EndPageBody: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view : View =  inflater.inflate(R.layout.endpagebody,container,false)
-        initEvent(view)
+
+        var cost = arguments?.getInt("cost")
+        var payment = arguments?.getString("payment")
+        var receipt = arguments?.getString("receipt")
+        var takeType = arguments?.getString("takeType")
+
+        fetchUi(view,cost!!,payment!!,receipt!!,takeType!!)
         return view
     }
 
-    fun initEvent(view:View){
-        var backMainBtn:Button = view.findViewById<Button>(R.id.backMain)
-        backMainBtn!!.setOnClickListener{
-        var intent = Intent(context, UserPage::class.java)
-            startActivity(intent)
-        }
+    fun fetchUi(view:View,cost:Int,payment:String,receipt:String,takeType:String){
+        var costView = view.findViewById<TextView>(R.id.totalcost)
+        costView.setText(cost.toString() + "원")
+        var paymentValue = view.findViewById<TextView>(R.id.payment)
+        paymentValue.setText(payment)
+        var isTakeout = view.findViewById<TextView>(R.id.isTakeOut)
+        isTakeout.setText(takeType)
+        var isReceipt = view.findViewById<TextView>(R.id.isReceipt)
+        isReceipt.setText(receipt)
     }
 }
 
