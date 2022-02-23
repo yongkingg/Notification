@@ -6,10 +6,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kiosk.Fragment.EndPageBody
 import com.example.kiosk.Fragment.PayPageBody
 import com.example.kiosk.R
+import com.example.kiosk.changeFragment
 
-class PayPage : AppCompatActivity() {
+class PayPage : AppCompatActivity(), changeFragment {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.backbtn_fragment)
@@ -30,7 +32,17 @@ class PayPage : AppCompatActivity() {
         bundle.putString("count",basketCount)
         fragment.arguments = bundle
         supportFragmentManager.beginTransaction().replace(R.id.mainlayout, fragment).commit()
+        initEvent()
+    }
 
+    override fun signal() {
+        supportFragmentManager.beginTransaction().replace(R.id.mainlayout, EndPageBody()).commit()
+    }
+    fun initEvent(){
+        var backBtn : Button? = findViewById<Button>(R.id.backBtn)
+        backBtn!!.setOnClickListener{
+            finish()
+        }
     }
 }
 

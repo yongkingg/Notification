@@ -215,7 +215,7 @@ class BeverageSetPageBody: Fragment() {
                         var nullTopping = arrayListOf<Int>(0,0,0,0)
                         beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,nullTopping)
                     } else {
-                        beverageValue.sendValue(menuName,menuImage,(totalCost + (toppingList[0] * 500) + (toppingList[1] * 500) + (toppingList[2] * 500) + (toppingList[3] * 500)),beverageCount,temperature!!,size!!,receive!!,toppingList)
+                        beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,toppingList)
                     }
                 }
                 alertdialog.setView(popupView)

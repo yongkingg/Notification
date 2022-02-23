@@ -49,13 +49,14 @@ class BasketPageBody: Fragment() {
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
+        Log.d("tag","$basketMenu")
         var imageParams = LinearLayout.LayoutParams(200, LinearLayout.LayoutParams.MATCH_PARENT)
         var textParams = LinearLayout.LayoutParams(410, LinearLayout.LayoutParams.WRAP_CONTENT)
 
         for (index in 0 until count!!.toInt()) {
             var linearLayout = LinearLayout(context)
             linearLayout.orientation = LinearLayout.HORIZONTAL
-            layoutParams.setMargins(10, 0, 10, 0)
+            layoutParams.setMargins(10, 30, 10, 0)
             linearLayout.layoutParams = layoutParams
             parentLayout.addView(linearLayout)
             layout.add(linearLayout)
@@ -98,29 +99,6 @@ class BasketPageBody: Fragment() {
             size.setTextColor(Color.BLACK)
             textLayout.addView(size)
 
-            var topping = TextView(context)
-            textParams.setMargins(10, 0, 10, 0)
-            topping.layoutParams = textParams
-            if (basketMenu[index][7].toInt() > 0) {
-                sql += "초콜릿칩 X " + "${basketMenu[index][7]}\n"
-            }
-            if (basketMenu[index][8].toInt() > 0) {
-                sql += "휘핑크림 X " + "${basketMenu[index][8]}\n"
-            }
-            if (basketMenu[index][9].toInt() > 0) {
-                sql += "타피오카 펄 X " + "${basketMenu[index][9]}\n"
-            }
-            if (basketMenu[index][10].toInt() > 0) {
-                sql += "시럽 X " + "${basketMenu[index][10]}"
-            }
-            if (basketMenu[index][7] == "0" && basketMenu[index][8] == "0" && basketMenu[index][9] == "0" && basketMenu[index][10] == "0") {
-                sql == "토핑 없음"
-            }
-            topping.setText(sql)
-            topping.textSize = 25.0f
-            topping.setTypeface(resources.getFont(R.font.body))
-            topping.setTextColor(Color.BLACK)
-            textLayout.addView(topping)
 
             var button = ImageView(context)
             button.id = index

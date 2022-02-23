@@ -11,3 +11,7 @@ interface BeverageValue {
 interface DeleteMenu {
     fun sendBasketList(list: ArrayList<ArrayList<String>>)
 }
+
+interface changeFragment {
+    fun signal()
+}

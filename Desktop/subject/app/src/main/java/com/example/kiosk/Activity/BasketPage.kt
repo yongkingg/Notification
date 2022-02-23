@@ -43,9 +43,10 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
 
         var headText = findViewById<TextView>(R.id.textView)
         headText.setText("장바구니")
-        initEvent()
-    }
 
+        initEvent()
+
+    }
     fun initEvent(){
         var backBtn: Button? = findViewById<Button>(R.id.backBtn)
         backBtn!!.setOnClickListener{
