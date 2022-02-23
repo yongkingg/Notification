@@ -59,6 +59,14 @@ class BeverageOrderPage : AppCompatActivity(), DataInterface {
                 }
             }
         )
+        var getBasketCount = intent?.getStringExtra("length")
+        if (getBasketCount != null) {
+            for (index in 0 until getBasketCount!!.toInt()){
+                var menu = intent?.getStringArrayListExtra("value"+"$index")
+                basket.add(menu!!)
+            }
+        }
+        Log.d("tag","$basket")
         initEvent()
     }
 
@@ -66,13 +74,13 @@ class BeverageOrderPage : AppCompatActivity(), DataInterface {
         var backBtn:Button? = findViewById<Button>(R.id.backBtn)
         backBtn!!.setOnClickListener{
             var intent = Intent(this, StartPage::class.java)
-            setResult(Activity.RESULT_OK,intent)
             if (basket.count() != 0) {
                 intent.putExtra("menuCount","${basket.count()}")
                 for (index in 0 until basket.count()){
                     intent.putStringArrayListExtra("menu" + "$index",basket[index])
                 }
             }
+            setResult(Activity.RESULT_OK,intent)
             finish()
         }
         var basketBtn:Button? = findViewById<Button>(R.id.basketBtn)

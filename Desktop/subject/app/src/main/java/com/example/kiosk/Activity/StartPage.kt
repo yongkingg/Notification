@@ -35,6 +35,7 @@ class StartPage : AppCompatActivity(), ChangeActivitiy {
         getBeverageValue = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(), ActivityResultCallback<ActivityResult>(){
                 if(it.resultCode == RESULT_OK){
+                    basket = arrayListOf<ArrayList<String>>()
                     var getBasket = it.data?.getStringExtra("menuCount")
                     if (getBasket != null){
                         for (index in 0 until getBasket!!.toInt()) {
@@ -76,6 +77,10 @@ class StartPage : AppCompatActivity(), ChangeActivitiy {
         var beverageOrderBtn : LinearLayout? = findViewById(R.id.orderBeverage)
         beverageOrderBtn!!.setOnClickListener{
             var intent = Intent(this, BeverageOrderPage::class.java)
+            intent.putExtra("length",basket.count().toString())
+            for (index in 0 until basket.count()) {
+                intent.putStringArrayListExtra("value"+"$index",basket[index])
+            }
             Log.d("tag","$basket")
             getBeverageValue.launch(intent)
             drawerLayout.closeDrawer(drawerView)
@@ -86,6 +91,10 @@ class StartPage : AppCompatActivity(), ChangeActivitiy {
 
     override fun signal(dummy:String) {
         var intent = Intent(this, BeverageOrderPage::class.java)
+        intent.putExtra("length",basket.count().toString())
+        for (index in 0 until basket.count()) {
+            intent.putStringArrayListExtra("value"+"$index",basket[index])
+        }
         getBeverageValue.launch(intent)
         Log.d("tag","$basket")
 
