@@ -1,5 +1,6 @@
 package com.example.kiosk.Fragment
 
+import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -244,7 +245,35 @@ class PayPageBody: Fragment() {
 
         var payBtn: Button? = view.findViewById<Button>(R.id.payBtn)
         payBtn!!.setOnClickListener{
-            signal.signal(allMenuCost!!,payment!!,isReceipt, takeType)
+            if (payment == null || isPay == false) {
+                var sql = ""
+                var popupView = getLayoutInflater().inflate(R.layout.popupwindow, null);
+                var alertdialog = AlertDialog.Builder(context).create()
+                var popupBackBtn = popupView.findViewById<Button>(R.id.backBtn)
+                var popupText = popupView.findViewById<TextView>(R.id.popuptext)
+                if (payment == null && isPay == false) {
+                    sql = "결제수단을 선택하고, 주문/결제에 동의해주세요"
+                } else if (isPay == false) {
+                    sql = "주문/결제에 동의해주세요"
+                } else if (payment == null) {
+                    sql = "결제수단을 선택해주세요"
+                }
+                popupText.setText(sql)
+                popupBackBtn!!.setOnClickListener {
+                    alertdialog.hide()
+                }
+                alertdialog.setView(popupView)
+                alertdialog.show()
+                alertdialog.window!!.setLayout(600, 400)
+
+            } else {
+                signal.signal(allMenuCost!!,payment!!,isReceipt, takeType)
+            }
+        }
+
+        var cancelOrder : Button? = view.findViewById<Button>(R.id.cancelOrder)
+        cancelOrder!!.setOnClickListener{
+            requireActivity().finish()
         }
     }
 }

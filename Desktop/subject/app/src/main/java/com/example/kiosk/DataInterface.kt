@@ -15,3 +15,7 @@ interface DeleteMenu {
 interface changeFragment {
     fun signal(cost : Int, payment : String, receipt : Boolean, takeType : String)
 }
+
+interface ChangeActivitiy{
+    fun signal(dummy:String)
+}

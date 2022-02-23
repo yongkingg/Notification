@@ -1,6 +1,7 @@
 package com.example.kiosk.Activity
 
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -18,6 +19,10 @@ class PayPage : AppCompatActivity(), changeFragment {
 
         var headText = findViewById<TextView>(R.id.textView)
         headText.setText("결제")
+
+
+        var backBtn : Button? =findViewById<Button>(R.id.backBtn)
+        backBtn!!.visibility = View.INVISIBLE
 
         var basketBtn: Button? = findViewById<Button>(R.id.basketBtn)
         basketBtn!!.visibility = View.INVISIBLE
@@ -46,11 +51,9 @@ class PayPage : AppCompatActivity(), changeFragment {
         } else {
             bundle.putString("receipt","미출력")
         }
-        Log.d("tag","$cost")
-        Log.d("tag","$payment")
-        Log.d("tag","$receipt")
         fragment.arguments = bundle
         supportFragmentManager.beginTransaction().replace(R.id.mainlayout, fragment).commit()
+
     }
     fun initEvent(){
         var backBtn : Button? = findViewById<Button>(R.id.backBtn)

@@ -18,11 +18,13 @@ import androidx.annotation.Dimension
 import androidx.core.view.GravityCompat
 import androidx.core.view.marginRight
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.kiosk.ChangeActivitiy
 import com.example.kiosk.R
 import com.example.kiosk.Fragment.StartPageBody
+import com.example.kiosk.changeFragment
 import java.sql.Array
 
-class StartPage : AppCompatActivity() {
+class StartPage : AppCompatActivity(), ChangeActivitiy {
     var basket : ArrayList<ArrayList<String>> = arrayListOf<ArrayList<String>>()
     lateinit var getBeverageValue: ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,22 +76,18 @@ class StartPage : AppCompatActivity() {
         var beverageOrderBtn : LinearLayout? = findViewById(R.id.orderBeverage)
         beverageOrderBtn!!.setOnClickListener{
             var intent = Intent(this, BeverageOrderPage::class.java)
+            Log.d("tag","$basket")
             getBeverageValue.launch(intent)
             drawerLayout.closeDrawer(drawerView)
         }
 
-        var cakeOrderBtn : LinearLayout? = findViewById(R.id.cakeOrder)
-        cakeOrderBtn!!.setOnClickListener{
-            var intent = Intent(this, CakeOrderPage::class.java)
-            startActivity(intent)
-            drawerLayout.closeDrawer(drawerView)
-        }
 
-        var couponBtn : LinearLayout? = findViewById(R.id.couponBtn)
-        couponBtn!!.setOnClickListener{
-            var intent = Intent(this, CouponPage::class.java)
-            startActivity(intent)
-            drawerLayout.closeDrawer(drawerView)
-        }
+    }
+
+    override fun signal(dummy:String) {
+        var intent = Intent(this, BeverageOrderPage::class.java)
+        getBeverageValue.launch(intent)
+        Log.d("tag","$basket")
+
     }
 }
