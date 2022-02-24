@@ -214,22 +214,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:weightSum="5"
+        android:weightSum="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="6,300원"
-            android:fontFamily="@font/body"
-            android:textColor="@color/white"
-            android:background="@drawable/paybtn"
-            android:gravity="center_vertical|center"/>
-
-
 
         <Button
             android:id="@+id/cancelOrder"

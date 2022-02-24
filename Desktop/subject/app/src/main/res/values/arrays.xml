@@ -22,45 +22,6 @@
         <item>3700</item>
     </integer-array>
 
-    <string-array name="iceFlakeList">
-        <item>판인절미 1인빙수</item>
-        <item>망고요거트 1인빙수</item>
-        <item>망고샤베트 빙수</item>
-        <item>딸기 치즈 빙수</item>
-        <item>팥빙수</item>
-    </string-array>
-
-    <integer-array name="iceFlakeCost">
-        <item>5400</item>
-        <item>5400</item>
-        <item>10800</item>
-        <item>10800</item>
-        <item>10800</item>
-    </integer-array>
-
-    <string-array name="cakeList">
-        <item>생딸기 연유 브레드</item>
-        <item>생딸기 와플</item>
-        <item>생딸기 크로플</item>
-        <item>토피넛 크로플</item>
-        <item>토피넛 꽈루아상</item>
-        <item>플레인 크로플</item>
-        <item>플레인 꽈루아상</item>
-        <item>매콤 로제 구운주먹밥</item>
-    </string-array>
-
-    <integer-array name="cakeCost">
-        <item>5400</item>
-        <item>5400</item>
-        <item>5800</item>
-        <item>5000</item>
-        <item>5000</item>
-        <item>4800</item>
-        <item>10800</item>
-        <item>4800</item>
-        <item>3000</item>
-    </integer-array>
-
     <string-array name="hotMenu">
         <item>아메리카노</item>
         <item>아인슈페너</item>
