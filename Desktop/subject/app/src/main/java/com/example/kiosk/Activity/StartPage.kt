@@ -1,5 +1,6 @@
 package com.example.kiosk.Activity
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -19,12 +20,13 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.marginRight
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.kiosk.ChangeActivitiy
+import com.example.kiosk.DataInterface
 import com.example.kiosk.R
 import com.example.kiosk.Fragment.StartPageBody
 import com.example.kiosk.changeFragment
 import java.sql.Array
 
-class StartPage : AppCompatActivity(), ChangeActivitiy {
+class StartPage : AppCompatActivity(), ChangeActivitiy, DataInterface {
     var basket : ArrayList<ArrayList<String>> = arrayListOf<ArrayList<String>>()
     lateinit var getBeverageValue: ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +36,26 @@ class StartPage : AppCompatActivity(), ChangeActivitiy {
 
         getBeverageValue = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(), ActivityResultCallback<ActivityResult>(){
-                if(it.resultCode == RESULT_OK){
+                if (it.resultCode == Activity.RESULT_CANCELED) {
+                    var beverageName = it.data?.getStringExtra("name")
+                    var beverageImage = it.data?.getStringExtra("Image")
+                    var beverageCost = it.data?.getStringExtra("cost")
+                    var beverageCount = it.data?.getStringExtra("count")
+                    var beverageTemp = it.data?.getStringExtra("temp")
+                    var beverageSize = it.data?.getStringExtra("size")
+                    var beverageReceive = it.data?.getStringExtra("receive")
+
+                    var beverageTopping = it.data?.getIntegerArrayListExtra("topping")
+                    var chocolate = beverageTopping?.get(0).toString()
+                    var cream = beverageTopping?.get(1).toString()
+                    var pull = beverageTopping?.get(2).toString()
+                    var shirup = beverageTopping?.get(3).toString()
+
+                    if (beverageName != null && beverageCount != null && beverageTemp != null && beverageSize != null && beverageReceive != null) {
+                        basket.add(arrayListOf(beverageName!!,beverageImage!!,beverageCost!!,beverageCount!!,beverageTemp!!,beverageSize!!,beverageReceive!!,chocolate,cream,pull,shirup))
+                    }
+
+                } else if(it.resultCode == RESULT_OK){
                     basket = arrayListOf<ArrayList<String>>()
                     var getBasket = it.data?.getStringExtra("menuCount")
                     if (getBasket != null){
@@ -90,13 +111,23 @@ class StartPage : AppCompatActivity(), ChangeActivitiy {
     }
 
     override fun signal(dummy:String) {
-        var intent = Intent(this, BeverageOrderPage::class.java)
-        intent.putExtra("length",basket.count().toString())
-        for (index in 0 until basket.count()) {
-            intent.putStringArrayListExtra("value"+"$index",basket[index])
-        }
-        getBeverageValue.launch(intent)
-        Log.d("tag","$basket")
+        if (dummy == "1") {
+            var intent = Intent(this, BeverageOrderPage::class.java)
+            intent.putExtra("length",basket.count().toString())
+            for (index in 0 until basket.count()) {
+                intent.putStringArrayListExtra("value"+"$index",basket[index])
+            }
+            getBeverageValue.launch(intent)
+            Log.d("tag","$basket")
+        } else if (dummy == "2") {
 
+        }
+    }
+
+    override fun sendSignal(data: Int, category: Int) {
+        var intent = Intent(this, BeverageSetPage::class.java)
+        intent.putExtra("menu","$data")
+        intent.putExtra("category","$category")
+        getBeverageValue.launch(intent)
     }
 }

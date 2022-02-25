@@ -17,9 +17,6 @@ class BeverageSetPage : AppCompatActivity(), BeverageValue {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.backbtn_fragment)
-
-
-
         var headText = findViewById<TextView>(R.id.textView)
         headText.setText("음료 주문")
         var fragment = BeverageSetPageBody()
@@ -40,17 +37,27 @@ class BeverageSetPage : AppCompatActivity(), BeverageValue {
         basketBtn!!.visibility = View.INVISIBLE
     }
     override fun sendValue(name: String, Image:Int,cost:Int,count: Int,temp: String,size: String,receive: String,topping: ArrayList<Int>) {
-        var intent = Intent(this, BeverageOrderPage::class.java)
-        intent.putExtra("name",name)
-        intent.putExtra("Image",Image.toString())
-        intent.putExtra("cost",cost.toString())
-        intent.putExtra("count",count.toString())
-        intent.putExtra("temp",temp)
-        intent.putExtra("size",size)
-        intent.putExtra("receive",receive)
-        intent.putIntegerArrayListExtra("topping",topping)
-        setResult(Activity.RESULT_CANCELED, intent)
-        Log.d("tag", cost.toString())
+        var beverageOrderPage = Intent(this, BeverageOrderPage::class.java)
+        beverageOrderPage.putExtra("name",name)
+        beverageOrderPage.putExtra("Image",Image.toString())
+        beverageOrderPage.putExtra("cost",cost.toString())
+        beverageOrderPage.putExtra("count",count.toString())
+        beverageOrderPage.putExtra("temp",temp)
+        beverageOrderPage.putExtra("size",size)
+        beverageOrderPage.putExtra("receive",receive)
+        beverageOrderPage.putIntegerArrayListExtra("topping",topping)
+        setResult(Activity.RESULT_CANCELED, beverageOrderPage)
+
+        var startPage = Intent(this,StartPage::class.java)
+        startPage.putExtra("name",name)
+        startPage.putExtra("Image",Image.toString())
+        startPage.putExtra("cost",cost.toString())
+        startPage.putExtra("count",count.toString())
+        startPage.putExtra("temp",temp)
+        startPage.putExtra("size",size)
+        startPage.putExtra("receive",receive)
+        startPage.putIntegerArrayListExtra("topping",topping)
+        setResult(Activity.RESULT_CANCELED, startPage)
         finish()
     }
 }

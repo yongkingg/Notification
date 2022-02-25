@@ -13,33 +13,32 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.Dimension
 import androidx.fragment.app.Fragment
+import com.example.kiosk.*
 import com.example.kiosk.Activity.BeverageOrderPage
-import com.example.kiosk.ChangeActivitiy
-import com.example.kiosk.ImageData
-import com.example.kiosk.R
-import com.example.kiosk.changeFragment
 
 class StartPageBody: Fragment() {
+    lateinit var orderBeverage : DataInterface
     lateinit var startOrder : ChangeActivitiy
     lateinit var image: ImageData
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         startOrder = context as ChangeActivitiy
+        orderBeverage = context as DataInterface
     }
     override fun onCreateView(inflater:LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view : View =  inflater.inflate(R.layout.startpagebody,container,false)
-        fetchMenu(view)
-
+        var hotMenu = resources.getStringArray(R.array.hotMenu)
+        var newMenu = resources.getStringArray(R.array.newMenu)
+        fetchMenu(view,hotMenu,newMenu)
         initEvent(view)
         return view
     }
 
 
-    fun fetchMenu(view:View) {
+    fun fetchMenu(view:View,hotMenu : Array<String>,newMenu: Array<String>) {
         image = ImageData()
-        var hotMenu = resources.getStringArray(R.array.hotMenu)
-        var newMenu = resources.getStringArray(R.array.newMenu)
+
         var hotMenuParentLayout = view.findViewById<LinearLayout>(R.id.hotMenuLayout)
         var newMenuParentLayout = view.findViewById<LinearLayout>(R.id.newMenuLayout)
         val layoutParams = LinearLayout.LayoutParams(
@@ -55,7 +54,10 @@ class StartPageBody: Fragment() {
             hotMenuParentLayout.addView(hotMenuLinearLayout)
 
             var hotMenuImage = Button(context)
-            hotMenuImage.setBackgroundResource(image.hotMenuImage[index])
+            hotMenuImage!!.setOnClickListener{
+                orderBeverage.sendSignal(index,4)
+            }
+            hotMenuImage.setBackgroundResource(image.image[4][index])
             hotMenuImage.layoutParams = imageParams
             hotMenuLinearLayout.addView(hotMenuImage)
 
@@ -75,8 +77,10 @@ class StartPageBody: Fragment() {
             newMenuParentLayout.addView(newMenuLinearLayout)
 
             var newMenuImage = Button(context)
-            newMenuImage.id = index
-            newMenuImage.setBackgroundResource(image.newMenuImage[index])
+            newMenuImage!!.setOnClickListener{
+                orderBeverage.sendSignal(index,0)
+            }
+            newMenuImage.setBackgroundResource(image.image[0][index])
             newMenuImage.layoutParams = imageParams
             newMenuLinearLayout.addView(newMenuImage)
 
@@ -97,7 +101,5 @@ class StartPageBody: Fragment() {
         startOrderBtn!!.setOnClickListener{
             startOrder.signal("1")
         }
-
     }
-
 }

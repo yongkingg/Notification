@@ -19,3 +19,4 @@ interface changeFragment {
 interface ChangeActivitiy{
     fun signal(dummy:String)
 }
+

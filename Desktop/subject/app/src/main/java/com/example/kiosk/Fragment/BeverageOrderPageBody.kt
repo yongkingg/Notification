@@ -15,7 +15,7 @@ import com.example.kiosk.ImageData
 import com.example.kiosk.R
 
 class BeverageOrderPageBody: Fragment() {
-    lateinit var dataInterface: DataInterface
+    lateinit var orderBeverage: DataInterface
     lateinit var image: ImageData
     var category: Int? = 0
     var categoryList = arrayOf(R.array.newMenu, R.array.coffeeList, R.array.flatccino, R.array.shakeade)
@@ -23,7 +23,7 @@ class BeverageOrderPageBody: Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        dataInterface = context as DataInterface
+        orderBeverage = context as DataInterface
     }
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View {
@@ -143,7 +143,7 @@ class BeverageOrderPageBody: Fragment() {
             for (index in 0 until menu.count()) {
                 var beverageBtn: Button? = view.findViewById<Button>(index)
                 beverageBtn!!.setOnClickListener {
-                    dataInterface.sendSignal(index,category)
+                    orderBeverage.sendSignal(index,category)
                 }
             }
         }

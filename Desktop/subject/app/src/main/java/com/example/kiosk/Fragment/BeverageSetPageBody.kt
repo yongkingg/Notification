@@ -23,8 +23,8 @@ class BeverageSetPageBody: Fragment() {
     var size: String? = null
     var receive: String? = null
     var toppingList = arrayListOf<Int>()
-    var categoryList = arrayOf(R.array.newMenu, R.array.coffeeList, R.array.flatccino, R.array.shakeade)
-    var costList = arrayOf(R.array.newMenuCost, R.array.coffeeCost, R.array.flatccinoCost, R.array.shakeadeCost)
+    var categoryList = arrayOf(R.array.newMenu, R.array.coffeeList, R.array.flatccino, R.array.shakeade,R.array.hotMenu)
+    var costList = arrayOf(R.array.newMenuCost, R.array.coffeeCost, R.array.flatccinoCost, R.array.shakeadeCost,R.array.hotMenuCost)
 
 
     lateinit var beverageValue: BeverageValue
@@ -209,13 +209,21 @@ class BeverageSetPageBody: Fragment() {
                 var popupBackBtn = popupView.findViewById<Button>(R.id.backBtn)
                 var popupText = popupView.findViewById<TextView>(R.id.popuptext)
                 popupText.setText("장바구니에 음료가 담겼습니다.")
+                Log.d("tag","$menuName")
+                Log.d("tag","$menuImage")
+                Log.d("tag","$totalCost")
+                Log.d("tag","$beverageCount")
+                Log.d("tag","$temperature")
+                Log.d("tag","$size")
                 popupBackBtn!!.setOnClickListener {
                     alertdialog.hide()
                     if (toppingList.count() == 0){
                         var nullTopping = arrayListOf<Int>(0,0,0,0)
                         beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,nullTopping)
+                        Log.d("tag","!")
                     } else {
                         beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,toppingList)
+                        Log.d("tag","?")
                     }
                 }
                 alertdialog.setView(popupView)
