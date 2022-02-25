@@ -15,11 +15,13 @@ import androidx.annotation.Dimension
 import androidx.fragment.app.Fragment
 import com.example.kiosk.Activity.BeverageOrderPage
 import com.example.kiosk.ChangeActivitiy
+import com.example.kiosk.ImageData
 import com.example.kiosk.R
 import com.example.kiosk.changeFragment
 
 class StartPageBody: Fragment() {
     lateinit var startOrder : ChangeActivitiy
+    lateinit var image: ImageData
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -35,6 +37,7 @@ class StartPageBody: Fragment() {
 
 
     fun fetchMenu(view:View) {
+        image = ImageData()
         var hotMenu = resources.getStringArray(R.array.hotMenu)
         var newMenu = resources.getStringArray(R.array.newMenu)
         var hotMenuParentLayout = view.findViewById<LinearLayout>(R.id.hotMenuLayout)
@@ -52,8 +55,7 @@ class StartPageBody: Fragment() {
             hotMenuParentLayout.addView(hotMenuLinearLayout)
 
             var hotMenuImage = Button(context)
-            hotMenuImage.id = index
-            hotMenuImage.setBackgroundResource(R.drawable.cake)
+            hotMenuImage.setBackgroundResource(image.hotMenuImage[index])
             hotMenuImage.layoutParams = imageParams
             hotMenuLinearLayout.addView(hotMenuImage)
 
@@ -74,7 +76,7 @@ class StartPageBody: Fragment() {
 
             var newMenuImage = Button(context)
             newMenuImage.id = index
-            newMenuImage.setBackgroundResource(R.drawable.cake)
+            newMenuImage.setBackgroundResource(image.newMenuImage[index])
             newMenuImage.layoutParams = imageParams
             newMenuLinearLayout.addView(newMenuImage)
 
@@ -91,8 +93,6 @@ class StartPageBody: Fragment() {
 
 
     fun initEvent(view:View){
-        var hotMenu = resources.getStringArray(R.array.hotMenu)
-
         var startOrderBtn = view.findViewById<Button>(R.id.beverageOrderBtn)
         startOrderBtn!!.setOnClickListener{
             startOrder.signal("1")

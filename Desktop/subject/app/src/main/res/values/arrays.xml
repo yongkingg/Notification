@@ -25,15 +25,15 @@
     <string-array name="hotMenu">
         <item>아메리카노</item>
         <item>아인슈페너</item>
-        <item>생딸기 연유 브레드</item>
-        <item>생딸기 와플</item>
-        <item>생딸기 크로플</item>
+        <item>ICED 딸기라떼</item>
+        <item>ICED 생딸기 연유 플랫치노</item>
+        <item>ICED 생딸기 피치 히비스커스</item>
     </string-array>
 
     <integer-array name="hotMenuCost">
         <item>3200</item>
         <item>3800</item>
-        <item>5400</item>
+        <item>5800</item>
         <item>5400</item>
         <item>5800</item>
     </integer-array>

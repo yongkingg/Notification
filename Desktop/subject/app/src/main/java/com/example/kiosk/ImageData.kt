@@ -56,8 +56,8 @@ class ImageData {
     var hotMenuImage = mutableListOf<Int>(
         R.drawable.americano,
         R.drawable.ainsupanner,
-        R.drawable.strawberrybread,
-        R.drawable.strawberrywaple,
-        R.drawable.strawberrycrople
+        R.drawable.strawberrylattee,
+        R.drawable.strawberrymilkflatccino,
+        R.drawable.strawberrypeach
     )
 }
