@@ -2,6 +2,7 @@ package com.example.kiosk.Activity
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.media.Image
 import android.os.Bundle
@@ -19,7 +20,7 @@ import org.w3c.dom.Text
 class BasketPage : AppCompatActivity(), DeleteMenu {
     lateinit var getMenu : MutableList<ArrayList<String>>
     var basketChanged : Boolean = false
-    var basketCount : Int = 0
+    var getBasketCount : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.backbtn_fragment)
@@ -29,8 +30,8 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
 
         var fragment = BasketPageBody()
         var bundle = Bundle()
-        var getBasketCount = intent?.getStringExtra("length")
-        if (getBasketCount == null || getBasketCount.toInt() == 0) {
+        getBasketCount = intent?.getStringExtra("length")
+        if (getBasketCount == null || getBasketCount!!.toInt() == 0) {
             supportFragmentManager.beginTransaction().replace(R.id.mainlayout,NullBasketPageBody()).commit()
         } else {
             for (index in 0 until getBasketCount!!.toInt()){
@@ -40,19 +41,21 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
             bundle.putString("basketCount",getBasketCount)
             fragment.arguments = bundle
             supportFragmentManager.beginTransaction().replace(R.id.mainlayout,fragment).commit()
-
-            basketCount = getBasketCount!!.toInt()
         }
 
         var headText = findViewById<TextView>(R.id.textView)
         headText.setText("장바구니")
-
         initEvent()
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("test", "destroy 호출")
     }
 
     override fun sendBasketList(list: ArrayList<ArrayList<String>>) {
         getMenu = list
+        Log.d("tag","$getMenu")
         basketChanged = true
     }
 

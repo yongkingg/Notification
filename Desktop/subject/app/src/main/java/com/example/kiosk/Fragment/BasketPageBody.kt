@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -49,7 +48,6 @@ class BasketPageBody: Fragment() {
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-        Log.d("tag","$basketMenu")
         var imageParams = LinearLayout.LayoutParams(200, LinearLayout.LayoutParams.MATCH_PARENT)
         var textParams = LinearLayout.LayoutParams(410, LinearLayout.LayoutParams.WRAP_CONTENT)
 

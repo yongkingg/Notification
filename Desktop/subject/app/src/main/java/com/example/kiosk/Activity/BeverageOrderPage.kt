@@ -3,7 +3,6 @@ package com.example.kiosk.Activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.ActivityResult
@@ -69,7 +68,7 @@ class BeverageOrderPage : AppCompatActivity(), DataInterface {
         initEvent()
     }
 
-    fun initEvent(){
+    fun initEvent() {
         var backBtn:Button? = findViewById<Button>(R.id.backBtn)
         backBtn!!.setOnClickListener{
             var intent = Intent(this, StartPage::class.java)
@@ -96,7 +95,6 @@ class BeverageOrderPage : AppCompatActivity(), DataInterface {
             }
         }
     }
-
     override fun sendSignal(index:Int,category:Int) {
         var intent = Intent(this, BeverageSetPage::class.java)
         intent.putExtra("menu","$index")

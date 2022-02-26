@@ -214,10 +214,8 @@ class BeverageSetPageBody: Fragment() {
                     if (toppingList.count() == 0){
                         var nullTopping = arrayListOf<Int>(0,0,0,0)
                         beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,nullTopping)
-                        Log.d("tag","!")
                     } else {
                         beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,toppingList)
-                        Log.d("tag","?")
                     }
                 }
                 alertdialog.setView(popupView)

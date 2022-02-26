@@ -35,7 +35,6 @@ class StartPageBody: Fragment() {
         return view
     }
 
-
     fun fetchMenu(view:View,hotMenu : Array<String>,newMenu: Array<String>) {
         image = ImageData()
 

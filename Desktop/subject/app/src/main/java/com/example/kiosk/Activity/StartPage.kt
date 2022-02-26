@@ -2,7 +2,6 @@ package com.example.kiosk.Activity
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,21 +9,15 @@ import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.Dimension
-import androidx.core.view.GravityCompat
-import androidx.core.view.marginRight
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.kiosk.ChangeActivitiy
 import com.example.kiosk.DataInterface
 import com.example.kiosk.R
 import com.example.kiosk.Fragment.StartPageBody
-import com.example.kiosk.changeFragment
-import java.sql.Array
 
 class StartPage : AppCompatActivity(), ChangeActivitiy, DataInterface {
     var basket : ArrayList<ArrayList<String>> = arrayListOf<ArrayList<String>>()
@@ -69,6 +62,28 @@ class StartPage : AppCompatActivity(), ChangeActivitiy, DataInterface {
         )
         initEvent()
     }
+//    override fun onStop() {
+//        super.onStop()
+//        var repo = getSharedPreferences("table",Activity.MODE_PRIVATE)
+//        var editor = repo.edit()
+//        editor.putInt("count",basket.count())
+//        for (index in 0 until basket.count()){
+//            editor.putString("menu$index",basket[index].toString())
+//        }
+//        editor.commit()
+//    }
+//
+//    override fun onStart() {
+//        super.onStart()
+//        var repo = getSharedPreferences("table",Activity.MODE_PRIVATE)
+//        var count = repo.getInt("count",0)
+//        for (index in 0 until count) {
+//            Log.d("tag",repo.getString("menu$index","")!!)
+//        }
+//        Log.d("tag","$basket")
+//        Log.d("tag","$count")
+//    }
+//
 
     fun initEvent() {
         var drawerLayout : DrawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
@@ -109,16 +124,13 @@ class StartPage : AppCompatActivity(), ChangeActivitiy, DataInterface {
     }
 
     override fun signal(dummy:String) {
-        if (dummy == "1") {
-            var intent = Intent(this, BeverageOrderPage::class.java)
-            intent.putExtra("length",basket.count().toString())
-            for (index in 0 until basket.count()) {
-                intent.putStringArrayListExtra("value"+"$index",basket[index])
-            }
-            getBeverageValue.launch(intent)
-        } else if (dummy == "2") {
-
+        var intent = Intent(this, BeverageOrderPage::class.java)
+        intent.putExtra("length",basket.count().toString())
+        for (index in 0 until basket.count()) {
+            intent.putStringArrayListExtra("value"+"$index",basket[index])
         }
+        getBeverageValue.launch(intent)
+
     }
 
     override fun sendSignal(data: Int, category: Int) {
