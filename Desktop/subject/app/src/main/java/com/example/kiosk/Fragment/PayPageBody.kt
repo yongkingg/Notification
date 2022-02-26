@@ -183,7 +183,6 @@ class PayPageBody: Fragment() {
             mainLayout.addView(line)
 
             allMenuCost = allMenuCost!! +basketMenu[index][2].toInt() + topping
-            Log.d("cost","$allMenuCost")
         }
         var allCost = TextView(context)
         var allCostParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)

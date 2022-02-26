@@ -39,6 +39,7 @@ class EndPageBody: Fragment() {
         var backBtn: Button? = view.findViewById<Button>(R.id.endPayBtn)
         backBtn!!.setOnClickListener{
             var intent = Intent(context,StartPage::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
     }

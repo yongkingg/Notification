@@ -76,7 +76,6 @@ class StartPage : AppCompatActivity(), ChangeActivitiy, DataInterface {
 
         var basketBtn:Button? = findViewById<Button>(R.id.basketBtn)
         basketBtn!!.setOnClickListener{
-            Log.d("tag","$basket")
             var intent = Intent(this, BasketPage::class.java)
             intent.putExtra("length",basket.count().toString())
             for (index in 0 until basket.count()) {
@@ -102,7 +101,6 @@ class StartPage : AppCompatActivity(), ChangeActivitiy, DataInterface {
             for (index in 0 until basket.count()) {
                 intent.putStringArrayListExtra("value"+"$index",basket[index])
             }
-            Log.d("tag","$basket")
             getBeverageValue.launch(intent)
             drawerLayout.closeDrawer(drawerView)
         }
@@ -118,7 +116,6 @@ class StartPage : AppCompatActivity(), ChangeActivitiy, DataInterface {
                 intent.putStringArrayListExtra("value"+"$index",basket[index])
             }
             getBeverageValue.launch(intent)
-            Log.d("tag","$basket")
         } else if (dummy == "2") {
 
         }

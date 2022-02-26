@@ -209,12 +209,6 @@ class BeverageSetPageBody: Fragment() {
                 var popupBackBtn = popupView.findViewById<Button>(R.id.backBtn)
                 var popupText = popupView.findViewById<TextView>(R.id.popuptext)
                 popupText.setText("장바구니에 음료가 담겼습니다.")
-                Log.d("tag","$menuName")
-                Log.d("tag","$menuImage")
-                Log.d("tag","$totalCost")
-                Log.d("tag","$beverageCount")
-                Log.d("tag","$temperature")
-                Log.d("tag","$size")
                 popupBackBtn!!.setOnClickListener {
                     alertdialog.hide()
                     if (toppingList.count() == 0){

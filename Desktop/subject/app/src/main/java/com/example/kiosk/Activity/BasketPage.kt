@@ -19,6 +19,7 @@ import org.w3c.dom.Text
 class BasketPage : AppCompatActivity(), DeleteMenu {
     lateinit var getMenu : MutableList<ArrayList<String>>
     var basketChanged : Boolean = false
+    var basketCount : Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.backbtn_fragment)
@@ -39,6 +40,8 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
             bundle.putString("basketCount",getBasketCount)
             fragment.arguments = bundle
             supportFragmentManager.beginTransaction().replace(R.id.mainlayout,fragment).commit()
+
+            basketCount = getBasketCount!!.toInt()
         }
 
         var headText = findViewById<TextView>(R.id.textView)
@@ -47,6 +50,12 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
         initEvent()
 
     }
+
+    override fun sendBasketList(list: ArrayList<ArrayList<String>>) {
+        getMenu = list
+        basketChanged = true
+    }
+
     fun initEvent(){
         var backBtn: Button? = findViewById<Button>(R.id.backBtn)
         backBtn!!.setOnClickListener{
@@ -72,11 +81,6 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
                 }
             }
         }
-    }
-
-    override fun sendBasketList(list: ArrayList<ArrayList<String>>) {
-        getMenu = list
-        basketChanged = true
     }
 }
 

@@ -130,7 +130,6 @@ class BasketPageBody: Fragment() {
             if (basketMenu[index].isNullOrEmpty()) {
                 checkNull += 1
                 if (checkNull == count.toInt()) {
-                    Log.d("tag","!")
                     requireActivity().supportFragmentManager.beginTransaction().replace(R.id.mainlayout,NullBasketPageBody()).commit()
                 }
             }

@@ -66,7 +66,6 @@ class BeverageOrderPage : AppCompatActivity(), DataInterface {
                 basket.add(menu!!)
             }
         }
-        Log.d("tag","$basket")
         initEvent()
     }
 
