@@ -3,13 +3,16 @@ package com.example.kiosk.Activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kiosk.BeverageValue
 import com.example.kiosk.Fragment.BeverageSetPageBody
 import com.example.kiosk.R
+import com.example.kiosk.Service.ForegroundService
 import kotlin.math.cos
 
 class BeverageSetPage : AppCompatActivity(), BeverageValue {
@@ -59,5 +62,15 @@ class BeverageSetPage : AppCompatActivity(), BeverageValue {
         setResult(Activity.RESULT_CANCELED, startPage)
         finish()
     }
+
+    fun makeNotification (name: String) {
+        Toast.makeText(applicationContext,"장바구니에 음료가 담겼습니다.",Toast.LENGTH_SHORT).show()
+        var notification = Intent(this,ForegroundService::class.java)
+        notification.putExtra("name",name)
+        startService(notification)
+    }
+
+
+
 }
 

@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="EDIYA"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kiosk">
@@ -14,21 +14,14 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.kiosk.Activity.AccountPage"></activity>
-        <activity android:name="com.example.kiosk.Activity.UserPage"></activity>
-        <activity android:name="com.example.kiosk.Activity.CakeSetPage"></activity>
         <activity android:name="com.example.kiosk.Activity.BeverageOrderPage"></activity>
         <activity android:name="com.example.kiosk.Activity.BeverageSetPage"></activity>
         <activity android:name="com.example.kiosk.Activity.PayPage"></activity>
-        <activity android:name="com.example.kiosk.Activity.CakeOrderPage"></activity>
-        <activity android:name="com.example.kiosk.Activity.EndPage"></activity>
-        <activity android:name="com.example.kiosk.Activity.CouponPage"></activity>
         <activity android:name="com.example.kiosk.Activity.BasketPage"></activity>
-
-
+        <service android:name="com.example.kiosk.Service.BoundService"></service>
+        <service android:name=".Service.ForegroundService"></service>
     </application>
 </manifest>

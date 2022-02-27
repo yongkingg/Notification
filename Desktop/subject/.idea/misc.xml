@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2475" />
+        <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2475" />
         <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/layout/backbtn_fragment.xml" value="0.1537037037037037" />
         <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/layout/basketpagebody.xml" value="0.18020833333333333" />
         <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/layout/beveragesetbody.xml" value="0.14764492753623187" />
@@ -12,6 +14,8 @@
         <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/layout/newmenubody.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/layout/paypagebody.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/layout/startpagebody.xml" value="0.17274569402228976" />
+        <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2475" />
+        <entry key="..\:/Users/dydwn/Desktop/subject/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2475" />
         <entry key="..\:/Users/dydwn/OneDrive/pythonStep2/week3/subject/app/src/main/res/drawable-v24/accountbtn.xml" value="0.3635" />
         <entry key="..\:/Users/dydwn/OneDrive/pythonStep2/week3/subject/app/src/main/res/font/body.xml" value="0.3927083333333333" />
         <entry key="..\:/Users/dydwn/OneDrive/pythonStep2/week3/subject/app/src/main/res/layout/accountpagebody.xml" value="0.1" />

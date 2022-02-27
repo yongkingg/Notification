@@ -1,4 +1,6 @@
-package com.example.kiosk
+package com.example.kiosk.Class
+
+import com.example.kiosk.R
 
 
 class ImageData {

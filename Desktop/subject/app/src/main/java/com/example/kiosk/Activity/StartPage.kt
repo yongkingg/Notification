@@ -47,7 +47,6 @@ class StartPage : AppCompatActivity(), ChangeActivitiy, DataInterface {
                     if (beverageName != null && beverageCount != null && beverageTemp != null && beverageSize != null && beverageReceive != null) {
                         basket.add(arrayListOf(beverageName!!,beverageImage!!,beverageCost!!,beverageCount!!,beverageTemp!!,beverageSize!!,beverageReceive!!,chocolate,cream,pull,shirup))
                     }
-
                 } else if(it.resultCode == RESULT_OK){
                     basket = arrayListOf<ArrayList<String>>()
                     var getBasket = it.data?.getStringExtra("menuCount")
@@ -62,28 +61,6 @@ class StartPage : AppCompatActivity(), ChangeActivitiy, DataInterface {
         )
         initEvent()
     }
-//    override fun onStop() {
-//        super.onStop()
-//        var repo = getSharedPreferences("table",Activity.MODE_PRIVATE)
-//        var editor = repo.edit()
-//        editor.putInt("count",basket.count())
-//        for (index in 0 until basket.count()){
-//            editor.putString("menu$index",basket[index].toString())
-//        }
-//        editor.commit()
-//    }
-//
-//    override fun onStart() {
-//        super.onStart()
-//        var repo = getSharedPreferences("table",Activity.MODE_PRIVATE)
-//        var count = repo.getInt("count",0)
-//        for (index in 0 until count) {
-//            Log.d("tag",repo.getString("menu$index","")!!)
-//        }
-//        Log.d("tag","$basket")
-//        Log.d("tag","$count")
-//    }
-//
 
     fun initEvent() {
         var drawerLayout : DrawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)

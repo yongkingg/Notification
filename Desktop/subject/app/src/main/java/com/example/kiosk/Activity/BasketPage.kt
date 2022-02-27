@@ -31,6 +31,8 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
         var fragment = BasketPageBody()
         var bundle = Bundle()
         getBasketCount = intent?.getStringExtra("length")
+
+
         if (getBasketCount == null || getBasketCount!!.toInt() == 0) {
             supportFragmentManager.beginTransaction().replace(R.id.mainlayout,NullBasketPageBody()).commit()
         } else {
@@ -48,14 +50,8 @@ class BasketPage : AppCompatActivity(), DeleteMenu {
         initEvent()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("test", "destroy 호출")
-    }
-
     override fun sendBasketList(list: ArrayList<ArrayList<String>>) {
         getMenu = list
-        Log.d("tag","$getMenu")
         basketChanged = true
     }
 

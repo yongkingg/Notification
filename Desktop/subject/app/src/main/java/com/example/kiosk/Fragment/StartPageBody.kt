@@ -1,7 +1,6 @@
 package com.example.kiosk.Fragment
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
@@ -14,7 +13,7 @@ import android.widget.TextView
 import androidx.annotation.Dimension
 import androidx.fragment.app.Fragment
 import com.example.kiosk.*
-import com.example.kiosk.Activity.BeverageOrderPage
+import com.example.kiosk.Class.ImageData
 
 class StartPageBody: Fragment() {
     lateinit var orderBeverage : DataInterface

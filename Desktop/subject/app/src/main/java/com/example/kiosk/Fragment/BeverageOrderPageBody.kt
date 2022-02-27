@@ -10,7 +10,7 @@ import android.widget.*
 import androidx.annotation.Dimension
 import androidx.fragment.app.Fragment
 import com.example.kiosk.DataInterface
-import com.example.kiosk.ImageData
+import com.example.kiosk.Class.ImageData
 import com.example.kiosk.R
 
 class BeverageOrderPageBody: Fragment() {

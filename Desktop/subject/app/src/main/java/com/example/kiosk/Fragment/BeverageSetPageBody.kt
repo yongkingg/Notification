@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.kiosk.Activity.BeverageSetPage
 import com.example.kiosk.BeverageValue
-import com.example.kiosk.ImageData
+import com.example.kiosk.Class.ImageData
 import com.example.kiosk.R
-import kotlin.jvm.internal.Intrinsics
+import com.example.kiosk.Service.ForegroundService
 
 class BeverageSetPageBody: Fragment() {
     var beverageCount: Int = 1
@@ -211,10 +211,13 @@ class BeverageSetPageBody: Fragment() {
                 popupText.setText("장바구니에 음료가 담겼습니다.")
                 popupBackBtn!!.setOnClickListener {
                     alertdialog.hide()
+                    var beverageSetPage = activity as BeverageSetPage
                     if (toppingList.count() == 0){
                         var nullTopping = arrayListOf<Int>(0,0,0,0)
+                        beverageSetPage.makeNotification(menuName)
                         beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,nullTopping)
                     } else {
+                        beverageSetPage.makeNotification(menuName)
                         beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,toppingList)
                     }
                 }
