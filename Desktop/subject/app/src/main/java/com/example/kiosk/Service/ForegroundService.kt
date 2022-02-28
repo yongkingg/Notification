@@ -1,9 +1,6 @@
 package com.example.kiosk.Service
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.Service
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -16,24 +13,36 @@ import com.example.kiosk.Activity.BasketPage
 import com.example.kiosk.R
 
 class ForegroundService: Service() {
+    var beverageCost : Int = 0
+    var menuCount : Int = 0
+    lateinit var notificationManager: NotificationManager
+    lateinit var builder : NotificationCompat.Builder
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        builder = NotificationCompat.Builder(this, "channel")
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    }
+// Destory 상태에서 Notification 종료.
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d("ta11123123213123123","Start")
-
         var name = intent?.getStringExtra("name")
+        var cost = intent?.getStringExtra("totalCost")
+        var count = intent?.getStringExtra("count")
+        beverageCost += cost!!.toInt()
+        menuCount += count!!.toInt()
         startNotification(name!!)
-
         return super.onStartCommand(intent, flags, startId)
     }
 
     fun startNotification(name : String) {
-        var builder = NotificationCompat.Builder(this, "channel")
+        builder
             .setContentTitle("이디야 알림")
             .setContentText("장바구니에 ${name}가 담겼습니다")
             .setSmallIcon(R.drawable.ade)
+            .setStyle(NotificationCompat.BigTextStyle().bigText("장바구니에 ${name}가 담겼습니다\n총합 금액 : $beverageCost       음료 개수 : $menuCount"))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -43,11 +52,13 @@ class ForegroundService: Service() {
             var channel = NotificationChannel("channel", name, importance).apply {
                 description = text
             }
-            var notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
             notificationManager.notify(0, builder.build())
-
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        notificationManager.cancel(0)
     }
 }

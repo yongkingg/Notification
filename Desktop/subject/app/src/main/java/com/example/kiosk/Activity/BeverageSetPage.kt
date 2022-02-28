@@ -63,10 +63,12 @@ class BeverageSetPage : AppCompatActivity(), BeverageValue {
         finish()
     }
 
-    fun makeNotification (name: String) {
+    fun makeNotification (name: String, totalCost : Int, beverageCount : Int) {
         Toast.makeText(applicationContext,"장바구니에 음료가 담겼습니다.",Toast.LENGTH_SHORT).show()
         var notification = Intent(this,ForegroundService::class.java)
         notification.putExtra("name",name)
+        notification.putExtra("totalCost","$totalCost")
+        notification.putExtra("count","$beverageCount")
         startService(notification)
     }
 

@@ -214,10 +214,10 @@ class BeverageSetPageBody: Fragment() {
                     var beverageSetPage = activity as BeverageSetPage
                     if (toppingList.count() == 0){
                         var nullTopping = arrayListOf<Int>(0,0,0,0)
-                        beverageSetPage.makeNotification(menuName)
+                        beverageSetPage.makeNotification(menuName,totalCost,beverageCount)
                         beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,nullTopping)
                     } else {
-                        beverageSetPage.makeNotification(menuName)
+                        beverageSetPage.makeNotification(menuName,totalCost + toppingList[0] * 500 + toppingList[1] * 500 + toppingList[2] * 500 + toppingList[3] * 500, beverageCount)
                         beverageValue.sendValue(menuName,menuImage,totalCost,beverageCount,temperature!!,size!!,receive!!,toppingList)
                     }
                 }
